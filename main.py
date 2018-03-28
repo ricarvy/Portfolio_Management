@@ -66,12 +66,7 @@ def dataPreprocessing(database,):
         
 '''
 def test(config):
-    print('start your test ^_^')
-    matrix=pd.DataFrame(data= [[1439010600,'ETH',0.00900002, 0.009, 0.00900002, 0.009],[1439010900,'ETH',0.00901001, 0.00901, 0.00901001, 0.00901]],
-                        columns=list(['date', 'coin', 'high', 'low', 'open', 'close']))
-    env=Environment(config, matrix, 0, 0, ['ETH'])
-    y_t=env.get_y_t(t=1439010900)
-    print(y_t)
+    pass
 
 
 
