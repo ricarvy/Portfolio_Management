@@ -9,6 +9,9 @@ from argparse import ArgumentParser
 
 from model.modelGenerator import Model
 from tools.config_loader import ConfigLoader
+from environment.environment import Environment
+
+import pandas as pd
 
 def parser_builder():
     parser=ArgumentParser()
@@ -23,6 +26,11 @@ def main():
     option=parser.parse_args()
     configLoader=ConfigLoader()
     config=configLoader.load_config()
+
+    ### just a test, plz test your local function in this model !
+    if option.process == 'test':
+        test(config)
+
     if option.process == 'generate_model':
         modelGeneration(config)
 
@@ -50,6 +58,21 @@ Using this method we can get trainable dataframe
 '''
 def dataPreprocessing(database,):
     print('dataPreprocessing')
+
+'''
+    just a test of function
+    Have fun !!!!!!!
+    Enjoy yourself in this function !!!
+        
+'''
+def test(config):
+    print('start your test ^_^')
+    matrix=pd.DataFrame(data= [[1439010600,'ETH',0.00900002, 0.009, 0.00900002, 0.009],[1439010900,'ETH',0.00901001, 0.00901, 0.00901001, 0.00901]],
+                        columns=list(['date', 'coin', 'high', 'low', 'open', 'close']))
+    env=Environment(config, matrix, 0, 0, ['ETH'])
+    y_t=env.get_y_t(t=1439010900)
+    print(y_t)
+
 
 
 

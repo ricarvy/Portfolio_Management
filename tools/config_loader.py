@@ -8,6 +8,7 @@ import os
 import json
 
 rootPath=os.path.dirname(os.path.abspath(__file__)).replace('\\tools','\\net_config.json')
+
 class ConfigLoader:
     def __init__(self):
         self.__config_path=rootPath
