@@ -10,6 +10,7 @@ from argparse import ArgumentParser
 from model.modelGenerator import Model
 from tools.config_loader import ConfigLoader
 from environment.environment import Environment
+from tools.time_format_transformer import timestamp2str,str2timestamp
 
 import pandas as pd
 
@@ -67,7 +68,6 @@ def dataPreprocessing(database,):
 '''
 def test(config):
     pass
-
 
 
 

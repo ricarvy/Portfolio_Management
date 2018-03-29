@@ -6,6 +6,7 @@
 
 import pandas as pd
 import numpy as np
+import time
 
 class Environment:
     def __init__(self, config, globalDataMatrix, start, end, coin_list):
@@ -13,8 +14,10 @@ class Environment:
         ### the globalDataMatirx is defined as type pandas.Dataframe
         self.__data = globalDataMatrix
 
+        ### plz use timestamp, not str
         self.__start_time = start
 
+        ### plz use timestamp, not str
         self.__end_time = end
 
         self.__coin_list = coin_list

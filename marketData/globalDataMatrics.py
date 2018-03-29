@@ -34,14 +34,14 @@ class GlobalDataMatrics:
         ### a dict that present the net_config.json information
         self.__config = config
 
-        ### dtype:str
+        ### dtype:integer
         ### start date/time of the global data matrics
-        ### format like: 'yyyy/mm/dd'
+        ### timestamp
         self.__start = start
 
-        ### dtype:str
+        ### dtype:integer
         ### end date/time of the glocal data matrics
-        ### format like: 'yyyy/mm/dd'
+        ### timestamp
         self.__end = end
 
         ### dtype:Cursor (Database operation cursor)
@@ -62,6 +62,8 @@ class GlobalDataMatrics:
     def initialize_db(self, database_path=rootPath):
         cursor=None
         ### fill the blank
+
+        ###plz transform the date str to timestamp
         return cursor
 
     '''
