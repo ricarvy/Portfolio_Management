@@ -5,6 +5,7 @@
 import os
 import sqlite3
 import logging
+import pandas as pd
 
 '''
 This is a definition of rootPath
@@ -46,7 +47,11 @@ class GlobalDataMatrics:
 
         ### dtype:Cursor (Database operation cursor)
         ### the cursor that handle the data in database
-        self.__cursor=self.initialize_db()
+        self.__cursor, self.__connetction=self.initialize_db()
+
+        self._db_name = 'History'
+
+        # self.__coin_list = self.get_coin_list()
 
     '''
     Database initialization
@@ -60,42 +65,49 @@ class GlobalDataMatrics:
             script: database operation cursor
     '''
     def initialize_db(self, database_path=rootPath):
-        cursor=None
-        ### fill the blank
-
-        ###plz transform the date str to timestamp
-        return cursor
+        connection = sqlite3.connect(database_path)
+        cursor = connection.cursor()
+        connection.commit()
+        return cursor, connection
 
     '''
     get the global data matrics with index [start, end]
-    Param:
-        start: 
-            dtype: str
-            script:
-        end :
-            dtype: str
-            script:
     Return:
         panel
             dtype:pandas.DataFrame
             script: 
     '''
     def get_global_panel(self,
-                         start,
-                         end):
-        cursor=self.__cursor
-        panel=None
-        ### fill the blank
+                         coin = None,
+                         period = 300):
+        connection = self.__connetction
+        if coin == None:
+            sql = 'select * from '+ self._db_name
+        else:
+            sql = 'select * from History WHERE coin = '+ '"'+ coin +'"'
+        panel = pd.read_sql_query(sql, con=connection)
+        return panel
+
+    def get_coin_list(self):
+        connection = self.__connetction
+        sql = 'select distinct coin from '+self._db_name
+        panel=pd.read_sql_query(sql,connection)
+        return panel
+
+    def get_time_list(self):
+        connection = self.__connetction
+        sql = 'select distinct date from '+self._db_name
+        panel = pd.read_sql_query(sql, connection)
         return panel
 
     '''
     Save the data panel into .csv file in the file '/temp_csv/'
     Param:
         start: 
-            dtype: str
+            dtype: timestamp
             script:
         end :
-            dtype: str
+            dtype: timestamp
             script:
         filename:
             dtype: str

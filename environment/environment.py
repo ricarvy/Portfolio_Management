@@ -12,7 +12,7 @@ class Environment:
     def __init__(self, config, globalDataMatrix, start, end, coin_list):
 
         ### the globalDataMatirx is defined as type pandas.Dataframe
-        self.__data = globalDataMatrix
+        self.__data = globalDataMatrix.get_global_panel()
 
         ### plz use timestamp, not str
         self.__start_time = start
@@ -33,9 +33,8 @@ class Environment:
         
     '''
     def get_price_vector_from_t(self,t, index):
-        close=self.__data.loc[self.__data['date'] == t][index]
-        return float(close)
-
+        close=self.__data.loc[self.__data['date'] == t]['index']
+        return (close)
     '''
         create price relative vector(PRV)
         The format is like below:

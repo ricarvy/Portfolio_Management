@@ -31,6 +31,8 @@ date(INTEGER)
 
 '''
 def str2timestamp(str):
+    if len(str) == 10:
+        str = str+' 00:00:00'
     return int(time.mktime(time.strptime(str,'%Y-%m-%d %H:%M:%S')))
 
 
