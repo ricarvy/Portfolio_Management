@@ -32,8 +32,11 @@ class Environment:
         return the price vector of each asset of time t
         
     '''
-    def get_price_vector_from_t(self,t, index):
-        close=self.__data.loc[self.__data['date'] == t]['index']
+    def get_price_vector_from_t(self,t, coin_list, index):
+        closes = []
+        for i, coin in enumerate(coin_list):
+            close = self.__data.loc[(self.__data['date'] == t) & (self.__data['coin'] == coin_list[i][0])][index]
+            closes.append(close)
         return (close)
     '''
         create price relative vector(PRV)
@@ -50,18 +53,18 @@ class Environment:
                 script: the prv value of time t using the format above
 
      '''
-    def get_y_t(self, t):
-        v_t_cur = self.get_price_vector_from_t(t, self.__feature)
-        v_t_pre = self.get_price_vector_from_t(t-self.__period, self.__feature)
+    def get_y_t(self, t, coin_list):
+        v_t_cur = self.get_price_vector_from_t(t, coin_list, self.__feature)
+        v_t_pre = self.get_price_vector_from_t(t-self.__period, coin_list, self.__feature)
 
         prv=np.zeros(self.__coin_num, dtype=float)
         for i in range(self.__coin_num):
             if i == 0:
                 prv[i] = 1
             else:
-                prv[i] = v_t_cur/v_t_pre
+                prv[i] = v_t_cur[i]/v_t_pre[i]
         return prv
 
 
     def get_coin_num(self):
-        return len(self.__coin_list) + 1
+        return len(self.__coin_list)

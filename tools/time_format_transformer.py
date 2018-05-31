@@ -37,7 +37,7 @@ def str2timestamp(str):
 
 
 '''
-The function is used to fransform timestamp to time str like format given:
+The function is used to transform timestamp to time str like format given:
 
 1439010900 -> 2015-08-08 13:15:00 
 '''

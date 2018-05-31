@@ -25,7 +25,6 @@ class Agent:
         self.__env = environment
 
 
-
     def weight_vector_initialization(self):
         weight_vector=[]
         for coin_num, coin in enumerate(self.__coin_list):
@@ -35,14 +34,15 @@ class Agent:
                 weight_vector.append(0)
         return weight_vector
 
-    def calculate_return_rate(self,t,pre_way):
-        y_t=self.__env.get_y_t(t)
+    def calculate_return_rate(self,t,coin_list, pre_way = 'ro'):
+        y_t=self.__env.get_y_t(t, coin_list)
         wv = self.__weight_vector
         current_p=self._p
         update_p = 0.0
         if(len(y_t) == len(wv)):
             for index, element in enumerate(y_t):
-                update_p = update_p+ y_t[index]* wv[index]
+                update_p = update_p+ y_t[index]* wv[index]* current_p
+                self._p = update_p
             self._p_history.append(update_p)
         else:
             raise ValueError('The shape of y_t is not the same as wv, plz check it.')
@@ -53,3 +53,15 @@ class Agent:
             return np.log(update_p / current_p)
         else:
             return 0
+
+    def getName(self):
+        return self.__name
+
+    def getCoinList(self):
+        return self.__coin_list
+
+    def getWeightsVector(self):
+        return self.__weight_vector
+
+    def getAsset(self):
+        return self._p

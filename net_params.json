@@ -1,0 +1,98 @@
+{
+        "online_Q_net":
+            [
+                {
+                    "name" : "dense_layer_1",
+                    "neuron_num": 128,
+                    "initializer": "lecun_uniform",
+                    "activation": "relu",
+                    "dropout": 0.2
+                },
+                {
+                    "name": "dense_layer_2",
+                    "neuron_num": 128,
+                    "initializer": "lecun_uniform",
+                    "activation": "relu",
+                    "dropout": 0.2
+                },
+                {
+                    "name": "dense_layer_3",
+                    "neuron_num": 11,
+                    "initializer": "lecun_uniform",
+                    "activation": "linear",
+                    "dropout": 0.2
+                }
+            ],
+        "target_Q_net":
+            [
+                {
+                    "name": "dense_layer_1",
+                    "neuron_num": 128,
+                    "initializer": "lecun_uniform",
+                    "activation": "relu",
+                    "dropout": 0.2
+                },
+                {
+                    "name": "dense_layer_2",
+                    "neuron_num": 128,
+                    "initializer": "lecun_uniform",
+                    "activation": "relu",
+                    "dropout": 0.2
+                },
+                {
+                    "name": "dense_layer_3",
+                    "neuron_num": 11,
+                    "initializer": "lecun_uniform",
+                    "activation": "linear",
+                    "dropout": 0.2
+                }
+            ],
+        "online_tra_net":
+            [
+                {
+                    "name": "dense_layer_1",
+                    "neuron_num": 128,
+                    "initializer": "lecun_uniform",
+                    "activation": "relu",
+                    "dropout": 0.2
+                },
+                {
+                    "name": "dense_layer_2",
+                    "neuron_num": 128,
+                    "initializer": "lecun_uniform",
+                    "activation": "relu",
+                    "dropout": 0.2
+                },
+                {
+                    "name": "dense_layer_3",
+                    "neuron_num": 11,
+                    "initializer": "lecun_uniform",
+                    "activation": "linear",
+                    "dropout": 0.2
+                }
+            ],
+        "target_tra_net":
+            [
+                {
+                    "name": "dense_layer_1",
+                    "neuron_num": 128,
+                    "initializer": "lecun_uniform",
+                    "activation": "relu",
+                    "dropout": 0.2
+                },
+                {
+                    "name": "dense_layer_2",
+                    "neuron_num": 128,
+                    "initializer": "lecun_uniform",
+                    "activation": "relu",
+                    "dropout": 0.2
+                },
+                {
+                    "name": "dense_layer_3",
+                    "neuron_num": 11,
+                    "initializer": "lecun_uniform",
+                    "activation": "linear",
+                    "dropout": 0.2
+                }
+            ]
+    }

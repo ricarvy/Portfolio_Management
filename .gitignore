@@ -2,3 +2,6 @@
 .idea/inspectionProfiles/profiles_settings.xml
 .idea/*
 database/Data.db
+*.pyc
+*.pyc
+*.pyc
