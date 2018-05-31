@@ -81,25 +81,29 @@ def test(config):
     # result=env.get_price_vector_from_t(1439010600,index='close')
     max_date_set = []
     min_date_set = []
-    # for coin in coin_list:
-    #     max_Date = gdm.get_global_panel(coin = coin[0]).max(axis = 0)[0]
-    #     max_date_set.append(max_Date)
-    #     min_Date = gdm.get_global_panel(coin=coin[0]).min(axis=0)[0]
-    #     min_date_set.append(min_Date)
-    #     result = gdm.get_global_panel(coin = coin[0]).count()
-    #     print('The num of record of ',coin,' is ',result[0], ' and the maxdate is ', timestamp2str(max_Date), ' and the minndate is ', timestamp2str(min_Date))
+    for coin in coin_list:
+        max_Date = gdm.get_global_panel(coin = coin[0]).max(axis = 0)[0]
+        max_date_set.append(max_Date)
+        min_Date = gdm.get_global_panel(coin=coin[0]).min(axis=0)[0]
+        min_date_set.append(min_Date)
+        result = gdm.get_global_panel(coin = coin[0]).count()
+        print('The num of record of ',coin,' is ',result[0], ' and the maxdate is ', timestamp2str(max_Date), ' and the minndate is ', timestamp2str(min_Date))
 
     ### 寻找公共时间序列
-    # start_date = np.max(min_date_set)
-    # end_date = np.min(max_date_set)
-    # print('time start on ',timestamp2str(start_date), ' end on ', timestamp2str(end_date))
+    start_date = np.max(min_date_set)
+    end_date = np.min(max_date_set)
+    print('time start on ',timestamp2str(start_date), ' end on ', timestamp2str(end_date))
 
-    ETH = gdm.get_global_panel(coin = 'ETH')
-    ETH_close = ETH['close'].values
-    ETH_date = ETH['date'].values
-    data = [ETH_close]
-    date = [ETH_date]
-    plot(data,date)
+    global_panels = []
+    for coin in coin_list:
+        global_panel = gdm.get_global_panel(coin = coin[0])
+        global_panel = global_panel[global_panel['date'] >= min_Date]
+        global_panel = global_panel[global_panel['date'] <= max_Date]
+        global_panels.append(global_panel)
+
+
+
+
 
 
     # agent = Agent(coin_list=coin_list, p=10000000, environment=env)
